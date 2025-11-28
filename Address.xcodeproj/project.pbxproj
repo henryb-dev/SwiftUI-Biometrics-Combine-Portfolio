@@ -29,9 +29,36 @@
 		CBB710AE2E2FD0ED004A6050 /* AddressUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AddressUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CBB711052E2FFDE8004A6050 /* Exceptions for "Address" folder in "Address" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CustomLocation3.gpx,
+				Info.plist,
+				location4.gpx,
+			);
+			target = CBB710912E2FD0EA004A6050 /* Address */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		CBBEC98F2E74960D00DC28A2 /* Exceptions for "Address" folder in "Compile Sources" phase from "Address" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = CBB7108E2E2FD0EA004A6050 /* Sources */;
+			membershipExceptions = (
+				CustomLocation3.gpx,
+				location4.gpx,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CBB710942E2FD0EA004A6050 /* Address */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CBB711052E2FFDE8004A6050 /* Exceptions for "Address" folder in "Address" target */,
+				CBBEC98F2E74960D00DC28A2 /* Exceptions for "Address" folder in "Compile Sources" phase from "Address" target */,
+			);
 			path = Address;
 			sourceTree = "<group>";
 		};
@@ -400,6 +427,8 @@
 				DEVELOPMENT_TEAM = K657XD757B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Address/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Direcciones...;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +457,8 @@
 				DEVELOPMENT_TEAM = K657XD757B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Address/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Direcciones...;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
