@@ -14,6 +14,7 @@ Perfect for learning modern Swift development.
 - Protected content (portfolio) revealed only after authentication
 - Smooth error handling and user feedback
 - Clean MVVM architecture
+- API Data Load
 - Zero third-party dependencies
 
 ## 🛠 Tech Stack
@@ -22,6 +23,7 @@ Perfect for learning modern Swift development.
 |-----------------------|-----------------|
 | SwiftUI               | iOS 14+         |
 | Combine               | iOS 13+         |
+| Core Data             | iOS 13+         |
 | LocalAuthentication   | Built-in        |
 | Swift                 | 5.9+            |
 | Xcode                 | 15+ (recommended) |
