@@ -9,30 +9,35 @@ import UIKit
 import UserNotifications
 import Combine
 
+@MainActor
 class PushNotificationManager: NSObject, UNUserNotificationCenterDelegate, ObservableObject {
-    // Si hay propiedades cuyo cambio debería notificar a la UI,
-    // márcalas con @Published:
+
+    private let center: CustomNotificationCenter
     @Published var isRegistered = false
 
+    init(center: CustomNotificationCenter = UNUserNotificationCenter.current()) {
+        self.center = center
+        super.init()
+    }
+
     func registerForPush() {
-        let center = UNUserNotificationCenter.current()
         center.delegate = self
+
         center.requestAuthorization(options: [.alert, .badge, .sound]) { [weak self] granted, error in
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self?.isRegistered = granted
+
                 if granted {
                     UIApplication.shared.registerForRemoteNotifications()
                 }
             }
         }
     }
-
-    // Delegate: cuando llega alguna notificación
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
+    
+  /*  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                   didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         // Manejo de la notificación si es necesario
         completionHandler()
-    }
+    }*/
 }
-

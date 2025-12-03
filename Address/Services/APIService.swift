@@ -8,23 +8,27 @@
 import Foundation
 import Combine
 
-struct AddressDTO: Codable {
-    let id: UUID
-    let street: String
-    let city: String
-    let state: String
-    let country: String
+
+
+protocol APIServiceProtocol {
+    func fetchAddresses() -> AnyPublisher<[AddressDTO], Error>
 }
 
 class APIService {
     static let shared = APIService()
-    private init() {}
-
+    private let session: URLSession
+    
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
+    
     func fetchAddresses() -> AnyPublisher<[AddressDTO], Error> {
         let url = URL(string: "https://api.public-service.com/addresses")!
-        return URLSession.shared.dataTaskPublisher(for: url)
+        return session.dataTaskPublisher(for: url)
             .map(\.data)
             .decode(type: [AddressDTO].self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
 }
+
+extension APIService: APIServiceProtocol {}

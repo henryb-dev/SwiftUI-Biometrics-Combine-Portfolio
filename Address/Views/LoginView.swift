@@ -16,6 +16,7 @@ struct LoginView: View {
             Button("Iniciar sesión con Touch/Face ID") {
                 authVM.login()
             }
+            .accessibilityIdentifier("touchFaceIdButton")
             .padding()
             .background(Color.blue)
             .foregroundColor(.white)

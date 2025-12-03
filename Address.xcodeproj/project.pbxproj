@@ -41,23 +41,11 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		CBBEC98F2E74960D00DC28A2 /* Exceptions for "Address" folder in "Compile Sources" phase from "Address" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = CBB7108E2E2FD0EA004A6050 /* Sources */;
-			membershipExceptions = (
-				CustomLocation3.gpx,
-				location4.gpx,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CBB710942E2FD0EA004A6050 /* Address */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				CBB711052E2FFDE8004A6050 /* Exceptions for "Address" folder in "Address" target */,
-				CBBEC98F2E74960D00DC28A2 /* Exceptions for "Address" folder in "Compile Sources" phase from "Address" target */,
 			);
 			path = Address;
 			sourceTree = "<group>";
@@ -70,6 +58,11 @@
 		CBB710B12E2FD0ED004A6050 /* AddressUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AddressUITests;
+			sourceTree = "<group>";
+		};
+		CBC0B1AD2EDF913600DBAE8E /* AddressTestSupport */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AddressTestSupport;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -105,6 +98,7 @@
 				CBB710942E2FD0EA004A6050 /* Address */,
 				CBB710A72E2FD0ED004A6050 /* AddressTests */,
 				CBB710B12E2FD0ED004A6050 /* AddressUITests */,
+				CBC0B1AD2EDF913600DBAE8E /* AddressTestSupport */,
 				CBB710932E2FD0EA004A6050 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -159,6 +153,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				CBB710A72E2FD0ED004A6050 /* AddressTests */,
+				CBC0B1AD2EDF913600DBAE8E /* AddressTestSupport */,
 			);
 			name = AddressTests;
 			packageProductDependencies = (
@@ -198,7 +193,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					CBB710912E2FD0EA004A6050 = {
 						CreatedOnToolsVersion = 16.4;
@@ -355,6 +350,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -412,6 +408,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};

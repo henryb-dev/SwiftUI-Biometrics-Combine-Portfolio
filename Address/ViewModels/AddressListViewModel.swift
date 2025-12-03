@@ -10,33 +10,40 @@ import CoreData
 import Combine
 
 class AddressListViewModel: ObservableObject {
-    @Published var addresses = [Address]()
+    @Published var addresses: [Address] = []
     private var cancellables = Set<AnyCancellable>()
     let viewContext: NSManagedObjectContext
+    let api: APIServiceProtocol
+    var isTestMode = false
 
-    init(context: NSManagedObjectContext) {
-        viewContext = context
+    init(context: NSManagedObjectContext, api: APIServiceProtocol = APIService.shared) {
+        self.viewContext = context
+        self.api = api
+        load()
+    }
+    
+    func load() {
         fetchLocal()
         fetchRemote()
     }
 
     func fetchLocal() {
         let request: NSFetchRequest<Address> = Address.fetchRequest()
-        if let result = try? viewContext.fetch(request) {
-            addresses = result
-        }
+        addresses = (try? viewContext.fetch(request)) ?? []
     }
 
     func fetchRemote() {
-        APIService.shared.fetchAddresses()
+        api.fetchAddresses()
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { print($0) }, receiveValue: { dtos in
-                for dto in dtos {
-                    _ = Address.createOrUpdate(from: dto, in: self.viewContext)
-                }
-                try? self.viewContext.save()
-                self.fetchLocal()
-            })
+            .delay(for: .milliseconds(10), scheduler: DispatchQueue.main) 
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { dtos in
+                    for dto in dtos {
+                        _ = Address.createOrUpdate(from: dto, in: self.viewContext)
+                    }
+                    try? self.viewContext.save()
+                    self.fetchLocal()
+                  })
             .store(in: &cancellables)
     }
 }

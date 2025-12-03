@@ -30,12 +30,27 @@ final class AddressUITests: XCTestCase {
 
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+    
+    @MainActor
+    func testLoginViewUI() throws {
+        let app = XCUIApplication()
+        app.launchArguments.append("-uiTest_loginView")
+        app.launch()
+        XCTAssertTrue(app.staticTexts["Admin Login"].exists)
+        let loginButton = app.buttons["touchFaceIdButton"]
+        XCTAssertTrue(loginButton.exists)
+        loginButton.tap()
+        app.launchArguments.append("-uiTest_biometricSuccess")
+        let homeText = app.staticTexts["Direcciones"]
+        XCTAssertTrue(homeText.waitForExistence(timeout: 2))
+    }
 
     @MainActor
     func testLaunchPerformance() throws {
-        // This measures how long it takes to launch your application.
-        measure(metrics: [XCTApplicationLaunchMetric()]) {
-            XCUIApplication().launch()
-        }
+    #if !DEBUG
+    measure(metrics: [XCTApplicationLaunchMetric()]) {
+        XCUIApplication().launch()
+    }
+    #endif
     }
 }

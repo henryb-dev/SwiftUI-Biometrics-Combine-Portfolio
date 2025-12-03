@@ -9,19 +9,25 @@ import LocalAuthentication
 import Combine
 
 class AuthService {
-    static func authenticate() -> Future<Bool, Never> {
+    static func authenticate(using ctx: LAContext = LAContext()) -> Future<Bool, Never> {
         return Future { promise in
-            let ctx = LAContext()
-            var error: NSError?
+            
             let reason = "Accede como administrador"
+            var error: NSError?
+
             if ctx.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-                ctx.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, _ in
-                    DispatchQueue.main.async { promise(.success(success)) }
+                ctx.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
+                                   localizedReason: reason) { success, _ in
+                    DispatchQueue.main.async {
+                        promise(.success(success))
+                    }
                 }
             } else {
-                // Fallback
-                DispatchQueue.main.async { promise(.success(false)) }
+                DispatchQueue.main.async {
+                    promise(.success(false))
+                }
             }
         }
     }
 }
+
